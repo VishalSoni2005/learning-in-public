@@ -1,0 +1,15 @@
+Common Interview Questions
+Explain the virtual DOM.
+
+Difference between useEffect and useLayoutEffect.
+
+What are controlled vs uncontrolled components?
+
+Why are keys important in lists?
+
+Practice Suggestions
+Platform: React Docs, Frontend Mentor, codedamn, Scrimba
+
+Projects: Blog, Chat App, Weather App using APIs
+
+State Management: Start with useContext, then move to Zustand or Redux
