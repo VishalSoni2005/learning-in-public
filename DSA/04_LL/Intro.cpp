@@ -17,6 +17,7 @@ public:
   }
 };
 
+//* indexing from 0 to size-1
 class linkedList
 {
 public:
@@ -97,6 +98,8 @@ public:
 
   void deleteAtHead()
   {
+    if (size == 0)
+      return;
     node *temp = head;
     head = head->next;
     delete temp;
@@ -132,11 +135,6 @@ public:
     if (position == 0)
     {
       deleteAtHead();
-      return;
-    }
-    if (position == size)
-    {
-      deleteAtTail();
       return;
     }
 
