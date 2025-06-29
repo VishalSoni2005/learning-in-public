@@ -42,6 +42,7 @@ int main()
   m[69] = "Trash";
 
   m.insert({10, "Raghav"});
+  m.emplace(12, "Rahul"); // no bracket required
 
   print(m);
 
