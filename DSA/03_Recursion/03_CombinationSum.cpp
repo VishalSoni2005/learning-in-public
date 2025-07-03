@@ -25,7 +25,7 @@ void combinationSum(vector<int> &arr, vector<int> &ans, int index, int target)
 
 int main()
 {
-  vector<int> arr = {2, 3, 5};
+  vector<int> arr = { 2, 3, 5};
   vector<int> ans;
   int target = 8;
   combinationSum(arr, ans, 0, target);

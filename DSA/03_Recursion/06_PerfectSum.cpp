@@ -1,5 +1,6 @@
 //? Number of subset possible to sum up to sum and also print the subsets
 
+//! tc : O(2^n);
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
@@ -26,7 +27,7 @@ void perfectSum(vector<int> &nums, vector<vector<int>> &ans, int sum, int idx, v
 
 int main()
 {
-  vector<int> nums = {2, 3, 5};
+  vector<int> nums = {-1, 0, 2, 3, 5, 6};
   int sum = 5;
 
   vector<vector<int>> ans;
