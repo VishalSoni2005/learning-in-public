@@ -13,7 +13,9 @@ void permutation(vector<int> &nums, vector<vector<int>> &ans, vector<int> &temp,
   }
 
   for (int i = 0; i < nums.size(); i++) //? Try every element from current index onward
-  { //* the nums.size() will be constant in every call
+  {                                     //* the nums.size() will be constant in every call
+    if (i > 0 and nums[i] == nums[i - 1] and !visited[i - 1])
+      continue;
     if (visited[i] == 0)
     {
       visited[i] = 1;
@@ -28,6 +30,8 @@ void permutation(vector<int> &nums, vector<vector<int>> &ans, vector<int> &temp,
 int main()
 {
   vector<int> nums = {1, 1, 2};
+  sort(nums.begin(), nums.end());
+
   vector<vector<int>> ans;
 
   vector<bool> visited = {0, 0, 0};
