@@ -1,3 +1,6 @@
+//! time complexities : O(2^n) call stack
+//! space complexities : O(n)
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -5,6 +8,7 @@ void subsetSum(int idx, vector<int> &nums, int sum)
 {
   if (idx == nums.size())
   {
+    // for(int i = 0; i < idx; i++) cout << nums[i] << " ";
     cout << "sum is : " << sum << endl;
     return;
   }
