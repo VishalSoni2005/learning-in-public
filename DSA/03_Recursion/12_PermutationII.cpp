@@ -1,6 +1,8 @@
 //! Time complexty : O(n * n!);
 //! space complexty: O(n);
 
+//* DUBLICATION OF ELEMENT CAN BE POSSIBLE
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -27,6 +29,28 @@ void permutation(vector<int> &nums, vector<vector<int>> &ans, vector<int> &temp,
   }
 }
 
+//? space Efficient
+void permute_Efficient(vector<int> &nums, vector<vector<int>> &ans, int idx = 0)
+{
+  if (idx == nums.size())
+  {
+    ans.push_back(nums);
+    return;
+  }
+
+  vector<int> use(21, 0);
+  for (int i = idx; i < nums.size(); i++)
+  {
+    if (use[nums[i] + 10] == 0) // meaning it is used first time
+    {
+      swap(nums[idx], nums[i]);
+      permute_Efficient(nums, ans, idx + 1);
+      swap(nums[i], nums[idx]);
+      use[nums[i] + 10] = 1;
+    }
+  }
+}
+
 int main()
 {
   vector<int> nums = {1, 1, 2};
@@ -34,11 +58,12 @@ int main()
 
   vector<vector<int>> ans;
 
-  vector<bool> visited = {0, 0, 0};
-  vector<int> helper;
-  permutation(nums, ans, helper, visited);
+  // vector<bool> visited = {0, 0, 0};
+  // vector<int> helper;
+  // permutation(nums, ans, helper, visited);
+  permute_Efficient(nums, ans);
 
-  cout << "All possible permutations are n! : " << endl;
+  cout << "All unique possible permutations" << endl;
   for (auto i : ans)
   {
     for (int j : i)
