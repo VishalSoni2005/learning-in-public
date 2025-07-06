@@ -15,7 +15,7 @@ void subset(int arr[], vector<int> &v, int n)
   subset(arr, v, n - 1);
   v.push_back(arr[n - 1]);
   subset(arr, v, n - 1);
-  // v.pop_back();
+  v.pop_back(); // this is back Tracking
 }
 
 int main()
