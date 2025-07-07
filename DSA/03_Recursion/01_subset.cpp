@@ -13,7 +13,6 @@ void subset(vector<vector<int>> &ans, vector<int> &v, vector<int> helper, int si
   helper.push_back(v[size - 1]);
   subset(ans, v, helper, size - 1);
   helper.pop_back();
-  
 }
 
 int main()
