@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void subset(vector<vector<int>> &ans, vector<int> &v, vector<int> helper, int size)
-{
-  if (size == 0)
-  {
+void subset(vector<vector<int>> &ans, vector<int> &v, vector<int> helper, int size) {
+  if (size == 0) {
     ans.push_back(helper);
     return;
   }
@@ -15,29 +13,24 @@ void subset(vector<vector<int>> &ans, vector<int> &v, vector<int> helper, int si
   helper.pop_back();
 }
 
-int main()
-{
+int main() {
   vector<vector<int>> ans;
   vector<int> v = {3, 4, 5};
   vector<int> helper;
 
   subset(ans, v, helper, 3);
 
-  for (int i = 0; i < ans.size(); i++)
-  {
-    for (int j = 0; j < ans[i].size(); j++)
-    {
+  for (int i = 0; i < ans.size(); i++) {
+    for (int j = 0; j < ans[i].size(); j++) {
       cout << ans[i][j] << " ";
     }
     cout << endl;
   }
 
   vector<int> subsetSum;
-  for (auto i : ans)
-  {
+  for (auto i : ans) {
     int count = 0;
-    for (auto j : i)
-    {
+    for (auto j : i) {
       count += j;
     }
     subsetSum.push_back(count);
