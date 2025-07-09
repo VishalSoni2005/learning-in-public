@@ -1,3 +1,7 @@
+🔑 The Golden Rule to calculate the TC in tree:
+  Each node is visited once → O(n)
+  Where n is the total number of nodes in the tree.
+
 A: Tree Topics : 
   1> Basic: 
       Height
