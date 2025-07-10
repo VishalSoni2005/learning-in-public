@@ -13,10 +13,18 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
+int level(TreeNode* root) {
+  if(!root) return 0;
+  return 1 + max(level(root->left), level(root->right));
+}
+
 //! this level order traversal is BFS
 void level_order_traversal(TreeNode* root) {
   queue<TreeNode*> q;
   q.push(root);
+
+  int lvl = level(root);
+  int i = 0;
 
   while (!q.empty()) {
     TreeNode* temp = q.front();
