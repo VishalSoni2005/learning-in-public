@@ -70,16 +70,19 @@ node *construct(vector<int> &arr, int n) {
 }
 
 int main() {
-  // INT_MIN as placeholder for null
+  
   vector<int> nums = {
       1,
       2, 3,
       4, 5, INT_MIN, 6,
-      INT_MIN, INT_MIN, 7, 8, 9};
+      INT_MIN, INT_MIN, 7, 8, 9, 10, 11};
 
   node *root = construct(nums, nums.size());
   vector<vector<int>> tree_levels;
   level_order_print(root, tree_levels);
+
+  cout << endl
+       << "Level order Traversal " << endl;
 
   for (const auto &level : tree_levels) {
     for (int val : level) {
