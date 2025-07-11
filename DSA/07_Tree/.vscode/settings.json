@@ -5,6 +5,7 @@
     "span": "cpp",
     "type_traits": "cpp",
     "random": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "new": "cpp"
   }
 }
