@@ -53,6 +53,7 @@ class Solution {
         filled[pos] = true;
         ans[pos] = node->data;
       }
+      // ans[pos] = node->data;
 
       if (node->left) {
         q.push(node->left);
