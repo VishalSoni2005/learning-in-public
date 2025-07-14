@@ -8,5 +8,6 @@
     "vector": "cpp",
     "new": "cpp",
     "complex": "cpp"
-  }
+  },
+  "git.ignoreLimitWarning": true
 }

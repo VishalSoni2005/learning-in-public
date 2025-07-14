@@ -99,16 +99,3 @@ Tools: Scikit-learn, Seaborn, PCA
 | ✅ Scikit-learn        | `pip install scikit-learn`                        |
 | ✅ Matplotlib, Seaborn | `pip install matplotlib seaborn`                  |
 | ✅ Kaggle Datasets     | [kaggle.com](https://www.kaggle.com/datasets)     |
-
-
-
-
-
-
-
-for(int i = 0; i<n; i++) {
-    for(int j = 0; j < 2 * i + 1; j++  ) {
-        // space 
-        
-    }
-}

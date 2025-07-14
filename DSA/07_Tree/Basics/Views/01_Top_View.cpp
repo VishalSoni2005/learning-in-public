@@ -7,13 +7,13 @@
  * vertical order traversal -> virtical view
  * sprial view
  */
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-struct Node{
+struct Node {
   int data;
-  Node* left;
-  Node* right;
+  Node *left;
+  Node *right;
 
   Node(int data) : data(data), left(NULL), right(NULL) {}
 };
@@ -68,3 +68,28 @@ class Solution {
     return ans;
   }
 };
+
+int main() {
+  // Example Tree:
+  //          1
+  //        /   \
+  //       2     3
+  //      / \   / \
+  //     4   5 6   7
+
+  Node *root = new Node(1);
+  root->left = new Node(2);
+  root->right = new Node(3);
+  root->left->left = new Node(4);
+  root->left->right = new Node(5);
+  root->right->left = new Node(6);
+  root->right->right = new Node(7);
+
+  // level_order_traversal(root);
+
+  Solution s;
+  vector<int> ans = s.topView(root);
+  for (int i : ans) {
+    cout << i << " ";
+  }
+}
