@@ -9,5 +9,7 @@
     "new": "cpp",
     "complex": "cpp"
   },
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "C_Cpp.errorSquiggles": "enabled",
+  "git.ignoreMissingGitWarning": true,
 }

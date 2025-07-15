@@ -29,6 +29,12 @@ B: Leetcode Questions:
   12> 103. Zigzag Level Order
   13> 107. Bottom-Up Level Order
   14> 199. Binary Tree Right Side View
+  delete node
+  path sum 
+  construct tree from pre and in
+  construct tree from in and Post
+  flat Binary tree
+  
 
 
 
