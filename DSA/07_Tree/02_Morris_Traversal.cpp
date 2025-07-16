@@ -33,22 +33,22 @@ void in_order_iterative(Node* root) {
 
 vector<int> morris_inorder(Node* root) {
   vector<int> ans;
+
   while (root) {
-    if (!root->left) {
+    if (root->left == nullptr) {
       ans.push_back(root->val);
       root = root->right;
     } else {
       Node* curr = root->left;
 
-      while(curr->right and curr->right != root) {
+      while (curr->right and curr->right != root) {
         curr = curr->right;
       }
 
-      if(curr->right == NULL) {
+      if (curr->right == NULL) {
         curr->right = root;
         root = root->left;
-      }
-      else {
+      } else {
         curr->right = NULL;
         ans.push_back(root->val);
         root = root->right;
@@ -119,5 +119,5 @@ int main() {
   cout << endl;
 
   vector<int> morrisInorder = morris_inorder(root);
-  for(auto i : morrisInorder) cout << i << " ";
+  for (auto i : morrisInorder) cout << i << " ";
 }

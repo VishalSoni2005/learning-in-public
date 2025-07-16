@@ -30,23 +30,6 @@ void per_order_iterative(Node* root) {
   cout << endl;
 }
 
-void in_order_iterative(Node* root) {
-  stack<Node*> st;
-  Node* curr = root;
-
-  while(curr or !st.empty()) {
-    while(curr) {
-      st.push(curr);
-      curr = curr->left;
-    }
-    curr = st.top();
-    st.pop();
-    cout << curr->val << " ";
-    curr = curr->right;
-  }
-  cout << endl;
-}
-
 void post_order_iterative(Node* root) {
   //* key is first fill up the stack and then pop and print
   //? 2 stack will be used
@@ -102,6 +85,6 @@ int main() {
   //* all iterative traversing algorithms
 
   per_order_iterative(root);
-  in_order_iterative(root);
+  // in_order_iterative(root);
   post_order_iterative(root);
 }
