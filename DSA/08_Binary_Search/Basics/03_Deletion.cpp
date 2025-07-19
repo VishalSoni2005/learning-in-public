@@ -57,13 +57,18 @@ class Solution {
           child = child->right;
         }
 
+        //* now child have greatest value in left of root
+
         if (root != parent) {
-          parent->right = child->left;
+          parent-> right = child->left;
+
+          // breaking the root connection
           child->left = root->left;
           child->right = root->right;
+
           delete root;
           return child;
-        } else {
+        } else { //* this case because if the node on left of parent is present the while following above cases on edge case is left
           child->right = root->right;
           delete root;
           return child;
