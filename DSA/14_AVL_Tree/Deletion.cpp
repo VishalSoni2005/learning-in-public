@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//! insertion time complexities: O(n log n)
+//! deletion time complexities: O( log n)
 
 class node {
  public:
