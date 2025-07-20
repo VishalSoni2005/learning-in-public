@@ -105,6 +105,79 @@ void inorder(node* root) {
   inorder(root->right);
 }
 
+node* deleteInBst(node* root, int key) {
+  if (!root) return nullptr;
+
+  if (root->data > key) {
+    root->left = deleteInBst(root->left, key);
+    return root;
+  } else if (root->data < key) {
+    root->right = deleteInBst(root->right, key);
+    return root;
+  }
+
+  else {
+    // leaf node
+    if (!root->left || !root->right) {
+      node* temp = root->left ? root->left : root->right;
+      delete root;
+      return temp;
+    }
+
+    // both child
+    else {
+      node* parent = root;
+      node* child = root->left;
+
+      while (child->right) {
+        parent = child;
+        child = child->right;
+      }
+
+      if (parent != child) {
+        parent->right = child->left;
+        child->right = root->right;
+        child->left = root->left;
+        delete root;
+        return child;
+      } else {
+        child->right = root->right;
+        delete root;
+        return child;
+      }
+    }
+  }
+
+  // Step 2: Update height
+  root->height = 1 + max(getHeight(root->left), getHeight(root->right));
+
+  // Step 3: Get balance factor
+  int balance = getBalance(root);
+
+  // Step 4: Balance the tree
+  // Case 1: Left Left
+  if (balance > 1 && key < root->left->data)
+    return rightRotation(root);
+
+  // Case 2: Right Right
+  if (balance < -1 && key > root->right->data)
+    return leftRotation(root);
+
+  // Case 3: Left Right
+  if (balance > 1 && key > root->left->data) {
+    root->left = leftRotation(root->left);
+    return rightRotation(root);
+  }
+
+  // Case 4: Right Left
+  if (balance < -1 && key < root->right->data) {
+    root->right = rightRotation(root->right);
+    return leftRotation(root);
+  }
+
+  return root;  // return unchanged node
+}
+
 int main() {
   node* root = NULL;
 
