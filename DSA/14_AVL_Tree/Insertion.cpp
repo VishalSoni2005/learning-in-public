@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//! insertion time complexities: O(n log n)
+
 class node {
  public:
   int data;
@@ -16,41 +18,42 @@ class node {
 };
 
 int getHeight(node* root) {
-  return root ? root->height : 0;
+  if (!root) return 0;
+  return root->height;
 }
 
 int getBalance(node* root) {
   return root ? getHeight(root->left) - getHeight(root->right) : 0;
 }
 
-node* rightRotation(node* y) {
-  node* x = y->left;
-  node* T2 = x->right;
+node* rightRotation(node* root) {
+  node* child = root->left;
+  node* childRight = child->right;
 
   // Rotation
-  x->right = y;
-  y->left = T2;
+  child->right = root;
+  root->left = childRight;
 
   // Update heights
-  y->height = 1 + max(getHeight(y->left), getHeight(y->right));
-  x->height = 1 + max(getHeight(x->left), getHeight(x->right));
+  root->height = 1 + max(getHeight(root->left), getHeight(root->right));
+  child->height = 1 + max(getHeight(child->left), getHeight(child->right));
 
-  return x;
+  return child;
 }
 
-node* leftRotation(node* x) {
-  node* y = x->right;
-  node* T2 = y->left;
+node* leftRotation(node* root) {
+  node* child = root->right;
+  node* childLeft = child->left;
 
   // Rotation
-  y->left = x;
-  x->right = T2;
+  child->left = root;
+  root->right = childLeft;
 
   // Update heights
-  x->height = 1 + max(getHeight(x->left), getHeight(x->right));
-  y->height = 1 + max(getHeight(y->left), getHeight(y->right));
+  root->height = 1 + max(getHeight(root->left), getHeight(root->right));
+  child->height = 1 + max(getHeight(child->left), getHeight(child->right));
 
-  return y;
+  return child;
 }
 
 node* insert(node* root, int key) {
@@ -149,7 +152,6 @@ int main() {
 // }
 
 // node* rightRotation(node* root) {
-
 
 // }
 // node* leftRotation(node* root) {
