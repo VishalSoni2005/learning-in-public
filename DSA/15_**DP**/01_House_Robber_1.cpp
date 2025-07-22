@@ -5,7 +5,7 @@ class Solution {
       return 0;
 
     return max(nums[idx] + rec_solve(nums, size, idx + 2),
-               rec_solve(nums, size, idx + 1));
+               rec_solve(nums, size, idx + 1)); 
   }
   int TD(vector<int>& nums, int size, int idx, vector<int>& dp) {
     if (idx >= size)
