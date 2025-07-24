@@ -67,3 +67,5 @@
 | **DP + State Compression** | Reduce space to 1D from 2D               | Coin Change, Knapsack                     |
 | **DP on Trees**            | Solve for nodes/subtrees recursively     | House Robber III                          |
 
+# Pattern Learned
+1-> take and not take
