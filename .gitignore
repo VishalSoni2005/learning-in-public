@@ -7,21 +7,48 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-custom_env
-.ipynb_checkpoints
+# Dependency directories
+node_modules/
+custom_env/
 
-node_modules
-dist
-dist-ssr
+# Python virtual environments
+venv/
+.env/
+.envrc
+*.env
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Build output
+dist/
+dist-ssr/
+build/
 *.local
+
+# Operating system files
+.DS_Store
+Thumbs.db
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Data & model checkpoints (optional, comment out if needed)
+*.h5
+*.ckpt
+*.pt
+*.pth
+*.joblib
+*.pkl
+
+# Large data files (optional)
+data/
+datasets/
+__pycache__/
