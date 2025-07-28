@@ -5,18 +5,18 @@ using namespace std;
 class Solution {
  public:
   int find(string& s1, int m, string& s2, int n, int& ans) {
-    if (m == 0 or n == 0) return 0;
+    if (m == 0 || n == 0) return 0;
 
     int len = 0;
     if (s1[m - 1] == s2[n - 1]) {
       len = 1 + find(s1, m - 1, s2, n - 1, ans);
-      ans = max(len, ans);
+      ans = max(ans, len);
+      return len;
+    } else {
+      find(s1, m - 1, s2, n, ans);
+      find(s1, m, s2, n - 1, ans);
+      return 0;  // reset length when mismatch
     }
-
-    find(s1, m - 1, s2, n, ans);
-    find(s1, m, s2, n - 1, ans);
-
-    return len;
   }
 
   int TD(string& s1, int m, string& s2, int n, int& ans, vector<vector<int>>& dp) {
