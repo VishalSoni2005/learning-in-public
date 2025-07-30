@@ -31,12 +31,27 @@ class Solution {
   int LongestRepeatingSubsequence(string& s) {
     // Code here
 
-    string t = s;
-    int n = s.length();
-
+    // string t = s;
+    // int n = s.length();
     // return rec(s, t, n, n);
 
-    vector<vector<int>> dp(n + 1, vector<int>(n + 1, -1));
-    return TD(s, t, n, n, dp);
+    // vector<vector<int>> dp(n + 1, vector<int>(n + 1, -1));
+    // return TD(s, t, n, n, dp);
+
+    int n = s.length();
+    vector<int> prev(n + 1, 0);
+    vector<int> curr(n + 1, 0);
+
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= n; j++) {
+        if (s[i - 1] == s[j - 1] and i != j) {
+          curr[j] = 1 + prev[j - 1];
+        } else {
+          curr[j] = max(curr[j - 1], prev[j]);
+        }
+      }
+      prev = curr;
+    }
+    return prev[n];
   }
 };

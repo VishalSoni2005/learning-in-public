@@ -1,6 +1,19 @@
 //! longest increasing subsequence
+//* 🧩 Problem: Given an integer array nums, return the length of the longest strictly increasing subsequence.class Solution {
 
-class Solution {
+class solution_learning{
+  public:
+
+  int rec() {}
+
+  int lengthOfLIS(vector<int>& nums) {
+    return rec(0, -1, nums);
+  }
+};
+
+
+
+class solution_optimized {
  public:
   int lis(vector<int>& a) {
     int n = a.size();
