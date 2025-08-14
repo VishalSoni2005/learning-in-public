@@ -11,3 +11,9 @@
 
 7 prefix XOR
 8 Prefix GCD / Prefix Min/Max
+
+## key important i noticed
+
+1 in prefix Sum and HashMap 
+  note that ** [[ (prefix Sum)ridx - (prefix Sum)lidx === (arr)lidx + (arr)ridx - 1 ]] **
+  and based on rhs condition we evaluate situation of question
