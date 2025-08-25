@@ -1,36 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// class Solution {
-//  public:
-//   bool detect(int v, vector<vector<int>>& edges,
-//               vector<bool>& vis, int node, int pNode) {
-//     vis[node] = 1;
-
-//     for (int i = 0; i < edges[node].size(); i++) {
-//       if (pNode == edges[node][i]) continue;  // ignore this case
-//       if (vis[edges[node][i]]) return 1;
-
-//       if (v, edges, vis, edges[node][i], node) return 1;
-//     }
-//     return 0;
-//   }
-
-//   bool isCycle(int V, vector<vector<int>>& edges) {
-//     // Code here
-
-//     vector<bool> vis(V, 0);
-
-//     for (int i = 0; i < V; i++) {
-//       if (!vis[i] and detect(V, edges, vis, i, -1)) return 1;
-//     }
-
-//     return 0;
-//   }
-// };
-// #include <bits/stdc++.h>
-// using namespace std;
-
 class Graph {
   int v;
   vector<vector<int>> adj;
@@ -114,6 +84,90 @@ class Graph {
   }
 
   void bfs() {
+    vector<bool> vis(v, 0);
+
+    cout << "BFS Traversal Component wise : \n";
+    for (int start = 0; start < v; start++) {
+      // for traversing to all index to visited array
+
+      if (!vis[start]) {
+        cout << "Component : ";
+        vis[start] = 1;
+        queue<int> q;
+        q.push(start);
+
+        while (not q.empty()) {
+          int temp = q.front();
+          q.pop();
+
+          cout << temp << " ";  // perform operation
+
+          for (auto i : adj[temp]) {
+            if (not vis[i]) {
+              vis[i] = 1;
+              q.push(i);
+            }
+          }
+        }
+        cout << endl;
+      }
+    }
+  }
+
+  //* getter function for graph class
+  //* coz it is private
+  int vertices() const { return v; }
+  const vector<vector<int>>& getList() const { return adj; }
+};
+
+class CycleDetector {
+  const Graph& graph;
+
+  // bool detectDFS(int node, int parent, vector<bool>& vis, const vector<vector<int>>& adj) {
+  //   vis[node] = true;
+  //   for (int neigh : adj[node]) {
+  //     if (!vis[neigh]) {
+  //       if (detectDFS(neigh, node, vis, adj)) return true;
+  //     } else if (neigh != parent) {
+  //       return true;  // cycle found
+  //     }
+  //   }
+  //   return false;
+  // }
+
+  //! class code
+  // bool
+  // detect(int v, vector<vector<int>>& edges,
+  //        vector<bool>& vis, int node, int pNode) {
+  //   vis[node] = 1;
+
+  //   for (int i = 0; i < edges[node].size(); i++) {
+  //     if (pNode == edges[node][i]) continue;  // ignore this case
+  //     if (vis[edges[node][i]]) return 1;
+
+  //     if (v, edges, vis, edges[node][i], node) return 1;
+  //   }
+  //   return 0;
+  // }
+
+ public:
+  CycleDetector(const Graph& g) : graph(g) {}  // initializer list
+
+  bool isCycle() {
+    int V = graph.vertices();
+    const auto& adj = graph.getAdj();
+
+    vector<bool> vis(V, false);
+    for (int i = 0; i < V; i++) {
+      if (!vis[i]) {
+        if (detectDFS(i, -1, vis, adj)) {
+          cout << "Cycle Detected ✅" << endl;
+          return true;
+        }
+      }
+    }
+    cout << "No Cycle ❌" << endl;
+    return false;
   }
 };
 
@@ -131,9 +185,15 @@ int main() {
   g.printGraph();
 
   cout << "\n--- Traversals ---\n";
-  cout << "DFS Graph Traversal " << endl;
+  cout << "(i) DFS Graph Traversal " << endl;
   g.dfs();
 
-  cout << "\nBFS Graph Traversal " << endl;
+  cout << "\n(ii) BFS Graph Traversal " << endl;
   g.bfs_with_start(0);
+  g.bfs();
+  cout << endl;
+
+  cout << "\n--- Cycle Detection ---\n";
+  CycleDetector detector(g);
+  detector.isCycle();
 }
