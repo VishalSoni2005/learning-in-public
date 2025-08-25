@@ -59,6 +59,7 @@ class Graph {
   }
 
   void printGraph() {
+    cout << "Adjacency List : " << endl;
     for (int i = 0; i < v; i++) {
       cout << i << " => ";
       for (int j : adj[i]) cout << j << " ";
@@ -66,15 +67,57 @@ class Graph {
     }
   }
 
+  void dfs_helper(int node, vector<bool>& vis) {
+    vis[node] = 1;
+    cout << node << " ";
 
-  void dfs()
+    for (auto i : adj[node]) {
+      if (!vis[i]) dfs_helper(i, vis);
+    }
+  }
 
+  void dfs() {
+    vector<bool> visited(v, 0);
 
+    // dfs_helper(node, visited, ans);
+    for (int i = 0; i < v; i++) {
+      if (!visited[i]) {
+        cout << "component : ";
+        dfs_helper(i, visited);
+        cout << endl;
+      }
+    }
+  }
+
+  void bfs_with_start(int start) {
+    vector<bool> vis(v, 0);
+    vis[start] = 1;
+    queue<int> q;
+    q.push(start);
+
+    cout << "BFS starting from " << start << ": ";
+    while (not q.empty()) {
+      int temp = q.front();
+      q.pop();
+
+      cout << temp << " ";
+
+      for (int i : adj[temp]) {
+        if (!vis[i]) {
+          q.push(i);
+          vis[i] = 1;
+        }
+      }
+    }
+
+    cout << endl;
+  }
+
+  void bfs() {
+  }
 };
 
 int main() {
-  
-
   Graph g(8);
 
   g.addEdge(0, 1);
@@ -88,6 +131,9 @@ int main() {
   g.printGraph();
 
   cout << "\n--- Traversals ---\n";
-  // g.DFS(0);
-  // g.BFS(0);
+  cout << "DFS Graph Traversal " << endl;
+  g.dfs();
+
+  cout << "\nBFS Graph Traversal " << endl;
+  g.bfs_with_start(0);
 }
