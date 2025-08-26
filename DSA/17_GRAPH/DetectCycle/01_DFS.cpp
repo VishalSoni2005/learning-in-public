@@ -119,29 +119,42 @@ class Graph {
   int vertices() const { return v; }
   const vector<vector<int>>& getList() const { return adj; }
 };
-
+//! main solution start from here
 class CycleDetector {
   const Graph& graph;
-
-  
 
  public:
   CycleDetector(const Graph& g) : graph(g) {}  // initializer list
 
-  bool isCycle() {
-    int V = graph.vertices();
-    const auto& adj = graph.getAdj();
-
-    vector<bool> vis(V, false);
-    for (int i = 0; i < V; i++) {
+  bool dfs(vector<vector<int>>& adj, vector<bool>& vis, int node, int pnode) {
+    vis[node] = true;
+    for (auto i : adj[node]) {
+      if (i == pnode) continue;  // skip the edge to parent
       if (!vis[i]) {
-        if (detectDFS(i, -1, vis, adj)) {
-          cout << "Cycle Detected ✅" << endl;
-          return true;
-        }
+        if (dfs(adj, vis, i, node)) return true;
+      } else {
+        // visited & not parent → cycle
+        return true;
       }
     }
-    cout << "No Cycle ❌" << endl;
+    return false;
+  }
+  bool isCycle(int v, vector<vector<int>>& edges) {
+    // Build adjacency list
+    vector<vector<int>> adj(v);
+    for (auto& e : edges) {
+      int a = e[0], b = e[1];
+      adj[a].push_back(b);
+      adj[b].push_back(a);
+    }
+
+    vector<bool> vis(v, false);
+
+    for (int i = 0; i < v; i++) {
+      if (!vis[i]) {
+        if (dfs(adj, vis, i, -1)) return true;
+      }
+    }
     return false;
   }
 };

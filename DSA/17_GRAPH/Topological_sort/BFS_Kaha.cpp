@@ -1,62 +1,49 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-
 class Solution {
  public:
-  vector<int> topoSort(int V, vector<int> adj[]) {
-    vector<int> indegree(V, 0);
+  vector<int> topoSort(int v, vector<vector<int>>& edges) {
+    // code here
+    // using bfs kahn algo:
 
-    // Step 1: Calculate in-degree of every node
-    for (int i = 0; i < V; i++) {
-      for (auto it : adj[i]) {
-        indegree[it]++;
-      }
+    // step 0
+    // edgelist is convertedt to adj list
+    vector<vector<int>> adj(v);
+    for (const vector<int>& e : edges) {
+      int i = e[0];
+      int j = e[1];
+      adj[i].push_back(j);
     }
 
-    // Step 2: Push all nodes with indegree 0 into queue
+    // now kahns:
+
+    // step 1 : inorder
+    vector<int> inorder(v, 0);
+    for (int i = 0; i < v; i++) {
+      for (auto j : adj[i]) inorder[j]++;
+    }
+
+    // step 2 : push to queue where inorder[i] == 0
     queue<int> q;
-    for (int i = 0; i < V; i++) {
-      if (indegree[i] == 0) {
-        q.push(i);
-      }
+    for (int i = 0; i < v; i++) {
+      if (inorder[i] == 0) q.push(i);
     }
 
-    // Step 3: BFS process
-    vector<int> topo;
+    // step 3 : typical BFS
+    vector<int> ans;
     while (!q.empty()) {
       int node = q.front();
       q.pop();
-      topo.push_back(node);
 
-      // Decrease indegree of neighbors
-      for (auto it : adj[node]) {
-        indegree[it]--;
-        if (indegree[it] == 0) {
-          q.push(it);
-        }
+      ans.push_back(node);
+
+      // reduce the inorder of adj elements
+      for (auto i : adj[node]) {
+        inorder[i]--;
+        if (inorder[i] == 0) q.push(i);
       }
     }
-
-    return topo;
+    return ans;
   }
 };
-
-int main() {
-  int V = 6;
-  vector<int> adj[V];
-
-  // Example graph (DAG)
-  adj[5].push_back(0);
-  adj[5].push_back(2);
-  adj[4].push_back(0);
-  adj[4].push_back(1);
-  adj[2].push_back(3);
-  adj[3].push_back(1);
-
-  Solution obj;
-  vector<int> ans = obj.topoSort(V, adj);
-
-  cout << "Topological Sort using Kahn's Algorithm (BFS): ";
-  for (auto it : ans) cout << it << " ";
-}
