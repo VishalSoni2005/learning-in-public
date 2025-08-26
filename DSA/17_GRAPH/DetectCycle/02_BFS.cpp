@@ -1,30 +1,39 @@
+
+
+//! DRY RUN THIS CODE ITS PREFECT
 class Solution {
  public:
-  bool isCycle(int V, vector<vector<int>>& edges) {
-    // Code here
-
-    // using bfs
-
-    vector<int> vis(V, 0);
-    vis[0] = 1;
+  bool bfs(int V, vector<vector<int>>& edges, vector<int>& vis) {
+    vis[V] = 1;
 
     queue<pair<int, int>> q;
-    q.push(make_pair(0, -1));  // node, parent
+    q.push({V, -1});  // node, parent
 
     while (!q.empty()) {
-      int node = q.front().first();
-      int pnode = q.front().second();
-
+      int node = q.front().first;
+      int pnode = q.front().second;
       q.pop();
 
       for (int i = 0; i < edges[node].size(); i++) {
-        if (pnode == edges[node][i]) continue;
-        if (vis[edges[node][i]]) return 1;
+        int nbr = edges[node][i];
 
-        vis[edges[node][i]] = 1;
-        q.push(make_pair(edges[node][i]), node);
+        if (nbr == pnode) continue;  // ignore parent
+        if (vis[nbr]) return true;   // visited & not parent => cycle
+
+        vis[nbr] = 1;
+        q.push({nbr, node});
       }
     }
-    return 0;
+    return false;
+  }
+
+  bool isCycle(int V, vector<vector<int>>& edges) {
+    vector<int> vis(V, 0);
+
+    for (int i = 0; i < V; i++) {
+      if (!vis[i] && bfs(i, edges, vis))
+        return true;
+    }
+    return false;
   }
 };

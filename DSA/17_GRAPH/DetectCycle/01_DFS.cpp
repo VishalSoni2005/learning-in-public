@@ -123,32 +123,7 @@ class Graph {
 class CycleDetector {
   const Graph& graph;
 
-  // bool detectDFS(int node, int parent, vector<bool>& vis, const vector<vector<int>>& adj) {
-  //   vis[node] = true;
-  //   for (int neigh : adj[node]) {
-  //     if (!vis[neigh]) {
-  //       if (detectDFS(neigh, node, vis, adj)) return true;
-  //     } else if (neigh != parent) {
-  //       return true;  // cycle found
-  //     }
-  //   }
-  //   return false;
-  // }
-
-  //! class code
-  // bool
-  // detect(int v, vector<vector<int>>& edges,
-  //        vector<bool>& vis, int node, int pNode) {
-  //   vis[node] = 1;
-
-  //   for (int i = 0; i < edges[node].size(); i++) {
-  //     if (pNode == edges[node][i]) continue;  // ignore this case
-  //     if (vis[edges[node][i]]) return 1;
-
-  //     if (v, edges, vis, edges[node][i], node) return 1;
-  //   }
-  //   return 0;
-  // }
+  
 
  public:
   CycleDetector(const Graph& g) : graph(g) {}  // initializer list
