@@ -42,6 +42,6 @@ class Solution {
       }
     }
 
-    return count == v;
+    return count != v;
   }
 };

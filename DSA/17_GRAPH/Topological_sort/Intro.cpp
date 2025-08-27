@@ -30,7 +30,7 @@ class Solution {
       adj[i].push_back(j);
     }
 
-    // not topo sort
+    // now topo sort
 
     stack<int> st;
     vector<bool> vis(v, 0);
