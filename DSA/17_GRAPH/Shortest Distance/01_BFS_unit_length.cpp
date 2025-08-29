@@ -1,21 +1,18 @@
 
-
-//! TC -> O(v + e) and space = o(v);
+#include <bits/stdc++.h>
+using namespace std;
 
 class Solution {
  public:
-  // Function to find the shortest path from source to all other nodes
   vector<int> shortestPath(vector<vector<int>>& adj, int src) {
-    // code here
     int v = adj.size();
 
-    // adj list is given
     vector<bool> vis(v, false);
     vector<int> dist(v, -1);
 
     queue<int> q;
     q.push(src);
-    vis[src] = 1;
+    vis[src] = true;
     dist[src] = 0;
 
     while (!q.empty()) {
@@ -23,12 +20,10 @@ class Solution {
       q.pop();
 
       for (auto i : adj[temp]) {
-        if (vis[i])
-          continue;
-        else {
-          vis[i] = 1;
+        if (!vis[i]) {
+          vis[i] = true;
           q.push(i);
-          dist[i] = 1 + dist[temp];
+          dist[i] = dist[temp] + 1;
         }
       }
     }
@@ -36,3 +31,31 @@ class Solution {
     return dist;
   }
 };
+
+int main() {
+  int V = 9;
+
+  // ✅ Correct adjacency list initialization
+  vector<vector<int>> adj = {
+      {1, 3},        // 0
+      {0, 2},        // 1
+      {1, 6},        // 2
+      {0, 4},        // 3
+      {3, 5},        // 4
+      {4, 6},        // 5
+      {2, 5, 7, 8},  // 6
+      {6, 8},        // 7
+      {7, 6}         // 8
+  };
+
+  int src = 1;
+  Solution obj;
+  vector<int> dist = obj.shortestPath(adj, src);
+
+  cout << "Shortest distance from source " << src << " to all vertices:\n";
+  for (int i = 0; i < V; i++) {
+    cout << "Node " << i << " -> " << dist[i] << "\n";
+  }
+
+  return 0;
+}
