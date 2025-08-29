@@ -2,7 +2,6 @@ class Solution {
  public:
   bool dfs(int node, int col, vector<int> &color, vector<vector<int>> &adj) {
     color[node] = col;  // assign color
-
     for (auto it : adj[node]) {
       if (color[it] == -1) {
         // assign alternate color recursively
@@ -24,17 +23,14 @@ class Solution {
       adj[m].push_back(n);
       adj[n].push_back(m);
     }
-
     // Step 2: Initialize color array
     vector<int> color(v, -1);
-
     // Step 3: Run DFS for each component
     for (int i = 0; i < v; i++) {
       if (color[i] == -1) {
         if (!dfs(i, 0, color, adj)) return false;
       }
     }
-
     return true;  // no conflicts
   }
 };
