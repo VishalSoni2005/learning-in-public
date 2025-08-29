@@ -22,13 +22,13 @@ int shortestPath(int V, vector<vector<int>>& edges, int src, int dest) {
     int node = q.front();
     q.pop();
 
-    for (int nbr : adj[node]) {
-      if (dist[nbr] == INT_MAX) {  // not visited
-        dist[nbr] = dist[node] + 1;
-        parent[nbr] = node;
-        q.push(nbr);
+    for (int i : adj[node]) {
+      if (dist[i] == INT_MAX) {  // not visited
+        dist[i] = dist[node] + 1;
+        parent[i] = node;
+        q.push(i);
 
-        if (nbr == dest)  // we reached destination early
+        if (i == dest)  // we reached destination early
           break;
       }
     }
