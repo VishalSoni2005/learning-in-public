@@ -12,7 +12,7 @@ int shortestPath(int V, vector<vector<int>>& edges, int src, int dest) {
 
   // Step 2: Distance + parent array
   vector<int> dist(V, INT_MAX);
-  vector<int> parent(V, -1);
+  vector<int> parent(V, -1); //! parent array is only for path
 
   dist[src] = 0;
   queue<int> q;
