@@ -53,3 +53,8 @@ data/
 datasets/
 __pycache__/
 paper
+
+
+# General C++ ignore rules
+*.o
+a.out
