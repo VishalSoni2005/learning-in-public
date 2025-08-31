@@ -1,5 +1,39 @@
 # 📚 Graph Data Structure – Interview Patterns & Roadmap
 
+started in : 24 aug 2025
+
+1 : Undirected Unweighted graph
+  dfs and bfs
+
+2: undirected weighted graph
+  dfs and bfs
+
+3: detect cycle
+  i> undirected graph
+    dfs and bfs
+  ii> directed graph
+    dfs and bfs
+
+4: Topo sort
+  dfs and bfs(kahn algo)
+
+5: bipartie graph
+
+6: shortest path
+  bfs for all
+  from src to dest
+  in DAG
+
+7 : Dijkistra 
+  unoptimied and optimised
+
+
+
+
+
+
+  
+
 Mastering graphs is crucial for coding interviews (FAANG, startups, financial companies).  
 They test **recursion, BFS/DFS, problem-solving, and optimization skills**.
 
