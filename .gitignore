@@ -58,3 +58,6 @@ paper
 # General C++ ignore rules
 *.o
 a.out
+a
+# Ignore all files with no extension anywhere
+*.
