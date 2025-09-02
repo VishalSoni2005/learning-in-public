@@ -22,6 +22,8 @@ class Solution {
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     pq.push({0, src});  // {dist, node}
 
+    //! pq will arrange the pairs based of first element of pair -> dist as assending order
+
     // Step 4: Process the queue
     while (!pq.empty()) {
       auto [d, node] = pq.top();
@@ -31,7 +33,8 @@ class Solution {
       if (d > dist[node]) continue;
 
       // Relax neighbours
-      for (auto [nbr, wt] : adj[node]) {
+      for (auto i : adj[node]) {
+        auto [nbr, wt] = i;
         if (dist[node] + wt < dist[nbr]) {
           dist[nbr] = dist[node] + wt;
           pq.push({dist[nbr], nbr});

@@ -25,14 +25,19 @@ started in : 24 aug 2025
   in DAG
 
 7 : Dijkistra 
-  unoptimied and optimised
+  unoptimied o(v^2)
+  optimised: o(ElogV)
+  DAG shortest path distance
+  Shortest path arr in undirect weighted graph
+
+8: Bellman ford algo
+  implementation
+  negative cycle detection
 
 
 
 
 
-
-  
 
 Mastering graphs is crucial for coding interviews (FAANG, startups, financial companies).  
 They test **recursion, BFS/DFS, problem-solving, and optimization skills**.
