@@ -61,3 +61,6 @@ a.out
 a
 # Ignore all files with no extension anywhere
 *.
+*
+!*/
+!*.*

@@ -5,7 +5,7 @@ started in : 24 aug 2025
 1 : Undirected Unweighted graph
   dfs and bfs
 
-2: undirected weighted graph
+2: directed weighted graph
   dfs and bfs
 
 3: detect cycle
