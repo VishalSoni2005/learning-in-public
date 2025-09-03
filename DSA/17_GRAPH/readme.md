@@ -34,6 +34,9 @@ started in : 24 aug 2025
   implementation
   negative cycle detection
 
+9: Floyd Warshall algo
+  implementation 
+  why prefered over belman and dijkstra
 
 
 
