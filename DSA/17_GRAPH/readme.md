@@ -38,6 +38,11 @@ started in : 24 aug 2025
   implementation 
   why prefered over belman and dijkstra
 
+10: Practice problems
+  1-> bfs for shortest path
+
+11: Eular Path and Ckt
+
 
 
 
