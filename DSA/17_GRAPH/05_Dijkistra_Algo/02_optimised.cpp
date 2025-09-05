@@ -34,7 +34,7 @@ class Solution {
 
       // Relax neighbours
       for (auto i : adj[node]) {
-        auto [nbr, wt] = i;
+        auto [nbr, wt] = i; //* yes this is from adj matrix
         if (dist[node] + wt < dist[nbr]) {
           dist[nbr] = dist[node] + wt;
           pq.push({dist[nbr], nbr});

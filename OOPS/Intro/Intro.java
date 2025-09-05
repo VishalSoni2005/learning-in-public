@@ -3,5 +3,5 @@ public class Intro {
 
     System.out.println("Hello, World!");
 
-    System.out.println("My name is " + args[0]);}
+  }
 }
