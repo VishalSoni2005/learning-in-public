@@ -5,8 +5,8 @@ bool isOperator(char c) {
   return (c == '+' || c == '-' || c == '*' || c == '/' || c == '^');
 }
 
-// Convert Postfix → Infix
-string postToInfix(string postfix) {
+// Convert Postfix → Prefix
+string postToPre(string postfix) {
   stack<string> st;
 
   for (char c : postfix) {
@@ -14,13 +14,14 @@ string postToInfix(string postfix) {
       // Operand → push as string
       st.push(string(1, c));
     } else if (isOperator(c)) {
-      // Operator → pop two operands
+      // Pop two operands
       string op2 = st.top();
       st.pop();
       string op1 = st.top();
       st.pop();
-      // Form new expression
-      string exp = "(" + op1 + c + op2 + ")";
+
+      // Form new prefix expression
+      string exp = c + op1 + op2;
       st.push(exp);
     }
   }
@@ -31,6 +32,6 @@ string postToInfix(string postfix) {
 int main() {
   string postfix = "AB+CD-*";
   cout << "Postfix: " << postfix << endl;
-  cout << "Infix:   " << postToInfix(postfix) << endl;
+  cout << "Prefix:  " << postToPre(postfix) << endl;
   return 0;
 }
