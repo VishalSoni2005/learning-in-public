@@ -1,5 +1,6 @@
-//!lc: 907. Sum of Subarray Minimums
-BRUTE FORCE : class Solution {
+//! lc: 907. Sum of Subarray Minimums
+//? BRUTE FORCE :
+class Solution {
  public:
   int sumSubarrayMins(vector<int>& arr) {
     // brute forc : find all subarray and then find min on all
@@ -22,5 +23,4 @@ BRUTE FORCE : class Solution {
   }
 };
 
-OPTIMIZATION: 
-
+//! OPTIMIZATION:
