@@ -1,14 +1,14 @@
 //! gfg : Shortest Source to Destination Path nad flood fill
 // User function Template for C++
 
-//todo : ONE OF THE SIMPLEST PATTERN
+// todo : ONE OF THE SIMPLEST PATTERN
 
 /* *
  * * this is one of the most important pattern of question :
- * remember following steps; 
- *  1-> make a martrix of possible direction 
+ * remember following steps;
+ *  1-> make a martrix of possible direction
  *  2-> run look from k = 0 to 4 checking all posibililry of direction
- *  3-> consider boundary conditions of matrix 
+ *  3-> consider boundary conditions of matrix
  */
 
 // TC : o(e * v);
