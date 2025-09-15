@@ -19,4 +19,5 @@ int main() {
     m = m >> 1;  // or m <<= 1;
   }
   cout << "m: " << m << endl;
+
 }

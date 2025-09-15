@@ -7,7 +7,7 @@ int main() {
   int n;
   cin >> n;
 
-  if(n & 1) cout << "n is odd";
-  else "n is even.";
+  if(n & 1) cout << "n is odd" ;
+  else cout << "n is even.";
   
 }

@@ -18,5 +18,9 @@ int main() {
   }
   cout << "m: " << m << endl;
 
+  int bin = 0b0110101;
+  cout << "Int Value of bin : " << bin << endl;
+  cout << "Left Shift Value : " << (bin << 2) << endl;  //! multiple of 2^2 = 4
+
   return 0;
 }
