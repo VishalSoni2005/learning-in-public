@@ -83,3 +83,6 @@ a
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+Notes/
+C++/

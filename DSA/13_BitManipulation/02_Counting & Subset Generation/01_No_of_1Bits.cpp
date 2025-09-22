@@ -4,6 +4,20 @@
 #include <iostream>
 using namespace std;
 
+class Solution {
+ public:
+  int hammingWeight(int n) {
+    int count = 0;
+    while (n) {
+      if (n & 1) {  // if LSB is 1 => increment count
+        count++;
+      }
+      n >>= 1;
+    }
+    return count;
+  }
+};
+
 void printCompactBinary(int n) {
   bool started = false;
   for (int i = 31; i >= 0; i--) {
