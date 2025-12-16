@@ -1,9 +1,0 @@
-{
-  "files.associations": {
-    "*.ejs": "html",
-    "stdlib.h": "c",
-    "stdio.h": "c",
-    "my_math.h": "c",
-    "co_ordinate.h": "c"
-  }
-}
