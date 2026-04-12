@@ -17,7 +17,7 @@ vector<int> twoSum(vector<int>& numbers, int target) {
     }
   }
 
-  return {};  // problem guarantees one solution, so this won't happen
+  return {}; 
 }
 
 int main() {
