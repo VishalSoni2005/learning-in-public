@@ -8,11 +8,6 @@
 // 7: reverse the linked list
 // 8: find the length of the linked list
 
-import java.util.*;
-import java.io.*;
-import java.lang.*;
-import java.util.function.*;
-import java.linkedlist.*;
 
 public class syntax {
 
