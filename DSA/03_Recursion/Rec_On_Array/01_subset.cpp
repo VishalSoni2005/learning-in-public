@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void subset(vector<vector<int>> &ans, vector<int> &v, vector<int> helper, int size) {
+void subset(vector<vector<int>>& ans, vector<int>& v, vector<int> helper, int size) {
   if (size == 0) {
     ans.push_back(helper);
     return;

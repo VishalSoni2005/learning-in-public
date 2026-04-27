@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
 using namespace std;
 void helper(vector<string> &ans, int n, string s, int no1 = 0, int noz = 0)
 {
