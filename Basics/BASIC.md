@@ -12,7 +12,7 @@ Focus: **pattern recognition + strong basics**
 - Find the largest element in an array
 - Find the smallest element in an array
 - Find second largest element
-- Find second smallest element
+- Find second smallest element 
 - Reverse an array
 - Rotate array by k positions (left/right)
 - Move all zeros to end

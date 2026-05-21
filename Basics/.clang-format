@@ -10,5 +10,5 @@ BraceWrapping:
   AfterStruct: false
   AfterUnion: false
   BeforeCatch: false
-  BeforeElse: false
+  BeforeElse: false 
   IndentBraces: false
