@@ -22,3 +22,13 @@ B: variable size window
   - 1.  Longest Substring Without Repeating Characters
   - 424.  Longest Repeating Character Replacement
   - 904.  Fruit Into Baskets
+
+-> 22 June revision
+
+- Longest substr/ subarr
+  1: LC 424
+  2: LC 3
+  3: LC 904
+  4: LC 1004
+  5: LC 992
+  6: LC 713
