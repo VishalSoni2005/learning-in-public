@@ -9,6 +9,6 @@
 | `clear()`                    | `O(n)`             | `O(n)`                                 |
 | `begin()` / `end()`          | `O(1)`             | `O(1)`                                 |
 | `*it` (dereference iterator) | `O(1)`             | `O(1)`                                 |
-| `lower_bound(x)`             | `O(log n)`         | ❌ Not available                        |
-| `upper_bound(x)`             | `O(log n)`         | ❌ Not available                        |
-| `equal_range(x)`             | `O(log n)`         | ❌ Not available                        |
+| `lower_bound(x)`             | `O(log n)`         | ❌ Not available                       |
+| `upper_bound(x)`             | `O(log n)`         | ❌ Not available                       |
+| `equal_range(x)`             | `O(log n)`         | ❌ Not available                       |
