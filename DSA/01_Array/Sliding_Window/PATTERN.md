@@ -46,6 +46,13 @@ Longest Repeating Character Replacement ⭐
 Max Consecutive Ones III
 Fruit Into Baskets
 
+1: LC 424
+2: LC 3
+3: LC 904
+4: LC 1004
+5: LC 992
+6: LC 713
+
 # 🔹 B. Smallest / Minimum Window
 
 🧠 Goal:
@@ -68,6 +75,13 @@ count = r - l + 1
 Number of Subarrays with At Most K Distinct ⭐
 Binary Subarrays With Sum
 Count Number of Nice Subarrays
+
+Leetcode questions:
+1: LC 1248
+2: LC 930
+3: LC 992
+4: 2799
+5: LC 2062
 
 # 🔹 D. Exactly K (IMPORTANT TRICK)
 
