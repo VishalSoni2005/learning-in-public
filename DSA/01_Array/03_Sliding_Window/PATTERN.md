@@ -48,12 +48,13 @@ A range `[l → r]` that moves across the input. Converts O(n²) brute force int
 
 > Minimize window size. Shrink from left as soon as condition is satisfied.
 
-| Problem                                   | Link                                                                                |
-| ----------------------------------------- | ----------------------------------------------------------------------------------- |
-| Minimum window substring ⭐⭐             | [LC 76](https://leetcode.com/problems/minimum-window-substring/)                    |
-| Minimum size subarray sum                 | [LC 209](https://leetcode.com/problems/minimum-size-subarray-sum/)                  |
-| Shortest subarray with sum ≥ k            | [LC 862](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/)      |
-| Replace the substring for balanced string | [LC 1234](https://leetcode.com/problems/replace-the-substring-for-balanced-string/) |
+| Problem                                   | Link                                                                                          |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Minimum window substring ⭐⭐             | [LC 76](https://leetcode.com/problems/minimum-window-substring/)                              |
+| Smallest subarray with sum greater than x | [GFG](https://www.geeksforgeeks.org/problems/smallest-subarray-with-sum-greater-than-x5651/1) |
+| Minimum size subarray sum                 | [LC 209](https://leetcode.com/problems/minimum-size-subarray-sum/)                            |
+| Shortest subarray with sum ≥ k            | [LC 862](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/)                |
+| Replace the substring for balanced string | [LC 1234](https://leetcode.com/problems/replace-the-substring-for-balanced-string/)           |
 
 ---
 
