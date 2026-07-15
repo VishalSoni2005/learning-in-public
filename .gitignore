@@ -53,6 +53,8 @@ data/
 datasets/
 __pycache__/
 paper
+*.pdf
+
 
 
 # General C++ ignore rules
@@ -87,7 +89,7 @@ a
 Notes/
 C++/
 2019 Pattern
-.vscode 
+.vscode
 React
 # macOS
 .DS_Store
