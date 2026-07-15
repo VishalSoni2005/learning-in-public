@@ -1,10 +1,8 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-void pip(int n)
-{
-  if (n == 0)
-    return;
+void pip(int n) {
+  if (n == 0) return;
   cout << "Pre " << n << endl;
   pip(n - 1);
   cout << "In " << n << endl;
@@ -12,7 +10,4 @@ void pip(int n)
   cout << "Post " << n << endl;
 }
 
-int main()
-{
-  pip(3);
-}
+int main() { pip(3); }
