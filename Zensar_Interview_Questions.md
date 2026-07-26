@@ -54,9 +54,11 @@ Master these **60 carefully selected questions** to build strong fundamentals in
 
 | #   | Problem                                        | Difficulty | Pattern                  |
 | --- | ---------------------------------------------- | ---------- | ------------------------ |
-| 22  | Longest Substring Without Repeating Characters | Medium     | Variable Window          |
-| 23  | Maximum Average Subarray I                     | Easy       | Fixed Window             |
 | 24  | Maximum Vowels in a Substring                  | Medium     | Fixed Window             |
+| 23  | Maximum Average Subarray I                     | Easy       | Fixed Window             |
+| GFG | Count Distinct Elements in Every Window        | Easy       | Fixed Window             |
+| GFG | First Negative in Windows of Size K            | Easy       | Fixed Window             |
+| 22  | Longest Substring Without Repeating Characters | Medium     | Variable Window          |
 | 25  | Minimum Size Subarray Sum                      | Medium     | Variable Window          |
 | 26  | Permutation in String                          | Medium     | Sliding Window + Hashing |
 
