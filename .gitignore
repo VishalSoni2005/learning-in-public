@@ -87,7 +87,7 @@ a
 Notes/
 C++/
 2019 Pattern
-.vscode 
+.vscode
 React
 .DS_Store
 
@@ -168,7 +168,7 @@ logs/
 # =========================
 # Large data / ML artifacts
 # =========================
-data/
+# data/
 datasets/
 models/
 checkpoints/
