@@ -54,6 +54,7 @@ datasets/
 __pycache__/
 paper
 *.pdf
+*.pyc
 
 
 
@@ -85,6 +86,7 @@ a
 
 # Built Visual Studio Code Extensions
 *.vsix
+.env
 
 Notes/
 C++/
