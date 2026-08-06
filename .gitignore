@@ -11,6 +11,7 @@ lerna-debug.log*
 node_modules/
 custom_env/
 
+
 # Python virtual environments
 venv/
 .env/
@@ -89,7 +90,6 @@ C++/
 2019 Pattern
 .vscode
 React
-.DS_Store
 
 # =========================
 # Python
@@ -152,12 +152,6 @@ htmlcov/
 !.vscode/launch.json
 
 .idea/
-
-# =========================
-# OS Files
-# =========================
-.DS_Store
-Thumbs.db
 
 # =========================
 # Logs
