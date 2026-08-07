@@ -1,9 +1,12 @@
 import { GraphState } from "./node-state.state";
-import { StateGraph, START, END } from "@langchain/langgraph";
+import { StateGraph, START, END, MemorySaver } from "@langchain/langgraph";
 import { searchNode } from "../nodes/search.node";
 import { filterNode } from "../nodes/filter.node";
 import { analysisNode } from "../nodes/analyse.node";
 import { summaryNode } from "../nodes/summarize.node";
+
+// Checkpointer for persisting graph state between interrupts (Human-in-the-Loop)
+export const checkpointer = new MemorySaver();
 
 const graph = new StateGraph(GraphState)
   .addNode("search", searchNode)
@@ -17,6 +20,10 @@ const graph = new StateGraph(GraphState)
   .addEdge("analyse", "summarize")
   .addEdge("summarize", END);
 
-export const webSearchAgent = graph.compile();
-export const app = webSearchAgent;
+// Compile graph with checkpointer and interrupts after each step for Human-in-the-Loop review
+export const webSearchAgent = graph.compile({
+  checkpointer,
+  interruptAfter: ["search", "filter", "analyse"],
+});
 
+export const app = webSearchAgent;

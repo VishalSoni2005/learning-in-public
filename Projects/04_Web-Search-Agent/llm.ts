@@ -13,17 +13,17 @@ let model: any;
 if (grok_key) {
   model = new ChatGroq({
     apiKey: grok_key,
-    model: "llama-3.1-8b-instant",
+    model: "llama-3.3-70b-versatile",
     temperature: 0,
   });
 } else if (google_key) {
   model = new ChatGoogleGenerativeAI({
     apiKey: google_key,
-    model: "gemini-1.5-flash",
+    model: "gemini-1.5-flash-latest",
     temperature: 0,
   });
 } else {
-  throw new Error("No API key found");
+  throw new Error("No API key found in environment variables.");
 }
 
 export default model;

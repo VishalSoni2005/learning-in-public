@@ -30,12 +30,10 @@ export const GraphState = Annotation.Root({
 
   // Final response
   summary: Annotation<string>(),
-});
 
-// export const NodeState = {
-//   query: z.string(),
-//   searchResults: z.array(z.string()),
-//   filterResults: z.array(z.string()),
-//   analysedResult: z.string(),
-//   finalAnswer: z.string(),
-// };
+  // Optional human feedback collected during Human-in-the-Loop review
+  humanFeedback: Annotation<string>({
+    reducer: (x, y) => (y ? (x ? `${x} | ${y}` : y) : x),
+    default: () => "",
+  }),
+});

@@ -1,66 +1,118 @@
 import "dotenv/config";
-
+import readline from "readline/promises";
+import { stdin as input, stdout as output } from "process";
 import { app } from "./graph/graph";
-// import { SEARCH_PROMPT } from "./prompts/search";
+import { DEFAULT_SEARCH_QUERY } from "./prompts";
 
-const SEARCH_PROMPT = `Find verified AI Full Stack internships in Pune, India.
+// Clean user query for the Web Search Agent
+const USER_QUERY = process.env.USER_QUERY || DEFAULT_SEARCH_QUERY;
 
-Search only official company career pages, Naukri, Wellfound, LinkedIn Jobs, Greenhouse, Lever, Ashby, Workday, and Indeed.
+// Configurable thread ID for LangGraph checkpointer state tracking
+const config = { configurable: { thread_id: "hitl-agent-session-1" } };
 
-Requirements:
-- Internship only
-- AI Full Stack, GenAI Engineer, LLM Engineer, AI Software Engineer or Full Stack Developer (AI)
-- Posted within the last 2 days
-- Stipend above ₹20,000/month
-- Currently accepting applications
+// Console UI Formatting Helpers
+function printHeader(title: string) {
+  console.log("\n" + "═".repeat(80));
+  console.log(` 🤖 WEB SEARCH AGENT  │  ${title}`);
+  console.log("═".repeat(80));
+}
 
-For every verified opening include:
-- Company
-- Job title
-- Location
-- Stipend
-- Posted date
-- Required skills
-- Direct application URL
-- Source website
+function printSection(title: string, content: string | number) {
+  console.log(`\n┌── ${title} ${"─".repeat(Math.max(0, 74 - title.length))}`);
+  const lines = String(content).split("\n");
+  for (const line of lines) {
+    console.log(`│ ${line}`);
+  }
+  console.log(`└${"─".repeat(78)}`);
+}
 
-Reject any opening that:
-- cannot be verified,
-- has no direct job page,
-- has an expired application,
-- has missing or conflicting information.
-
-Do not invent companies, jobs, salaries, dates or URLs.
-
-If fewer than five verified openings exist, return only those and explain why.`;
+function printStepBanner(stepNum: number, stepName: string, description: string) {
+  console.log("\n" + "─".repeat(80));
+  console.log(`📍 STEP ${stepNum}/4: [ ${stepName.toUpperCase()} NODE COMPLETED ]`);
+  console.log(`ℹ️  ${description}`);
+  console.log("─".repeat(80));
+}
 
 async function main() {
+  const rl = readline.createInterface({ input, output });
+
   try {
-    const result = await app.invoke({
-      query: SEARCH_PROMPT,
-    });
+    printHeader("HUMAN-IN-THE-LOOP AGENT EXECUTION");
+    console.log(`🔍 Initial Search Query: "${USER_QUERY}"`);
 
-    console.log("\n========== FINAL ANSWER ==========\n");
+    // Initial graph invocation - will run up to the first interruptAfter ("search")
+    let state = await app.invoke({ query: USER_QUERY }, config);
 
-    // console.log(result.summary);
-    console.log("Query:");
-    console.log(result.query);
+    // Node review step sequence
+    const steps = [
+      {
+        node: "search",
+        stepNum: 1,
+        title: "Web Search Results",
+        desc: "Raw search snippets fetched from Tavily",
+        next: "filter",
+        getContent: (vals: any) =>
+          `Total Results: ${vals.searchResults?.length || 0}\n\n` +
+          (vals.searchResults || [])
+            .map((res: string, idx: number) => `[Source ${idx + 1}]\n${res.trim()}`)
+            .join("\n\n----------------------------------------\n\n"),
+      },
+      {
+        node: "filter",
+        stepNum: 2,
+        title: "Filtered Results",
+        desc: "Noise removed & verified openings retained",
+        next: "analyse",
+        getContent: (vals: any) => vals.filteredResults || "No filtered results available.",
+      },
+      {
+        node: "analyse",
+        stepNum: 3,
+        title: "Analytical Report",
+        desc: "Comparative analysis, requirements & missing details",
+        next: "summarize",
+        getContent: (vals: any) => vals.analysis || "No analysis available.",
+      },
+    ];
 
-    console.log("\nSearch Results:");
-    console.log(result.searchResults);
+    // Loop through step interruptions
+    for (const step of steps) {
+      const graphState = await app.getState(config);
+      const values = graphState.values;
 
-    console.log("\nFiltered Results:");
-    console.log(result.filteredResults);
+      printStepBanner(step.stepNum, step.node, step.desc);
+      printSection(step.title, step.getContent(values));
 
-    console.log("\nAnalysis:");
-    console.log(result.analysis);
+      // Prompt human in the loop for review / feedback
+      console.log(`\n💬 [HUMAN-IN-THE-LOOP REVIEW]`);
+      console.log(`👉 Press [ENTER] to approve & continue to '${step.next}' node.`);
+      console.log(`✍️  Or type custom feedback/corrections to guide the next node:`);
+      
+      const feedback = await rl.question("\n> ");
 
-    console.log("\nSummary:");
-    console.log(result.summary);
+      if (feedback && feedback.trim().length > 0) {
+        console.log(`\n✅ Recorded Human Feedback: "${feedback.trim()}"`);
+        // Update state with human feedback
+        await app.updateState(config, { humanFeedback: feedback.trim() });
+      } else {
+        console.log(`\n👍 Step approved. Continuing execution flow...`);
+      }
 
-    console.log("\n==================================");
+      // Resume graph execution to next step
+      await app.invoke(null, config);
+    }
+
+    // Final state retrieval after summarize completes
+    const finalState = await app.getState(config);
+    const finalValues = finalState.values;
+
+    printHeader("FINAL AGENT REPORT (COMPLETE)");
+    printSection("SUMMARY REPORT", finalValues.summary || "No final summary generated.");
+    console.log("\n✨ Execution flow completed successfully.\n");
   } catch (error) {
-    console.error(error);
+    console.error("\n❌ Error during Human-in-the-Loop execution:", error);
+  } finally {
+    rl.close();
   }
 }
 

@@ -10,12 +10,20 @@
 // - Calls LLM to summarize.
 // - Returns { summary } to update state.
 import model from "../llm";
-import { SUMMARY_PROMPT } from "../prompts/summary";
+import { SUMMARY_PROMPT } from "../prompts";
 import { GraphState } from "../graph/node-state.state";
 
 export const summaryNode = async (state: typeof GraphState.State) => {
   try {
-    const { query, analysis } = state;
+    const { query, analysis, humanFeedback } = state;
+
+    const userMessageContent = [
+      `User Question:\n${query}`,
+      humanFeedback ? `\nHuman Feedback / Directives:\n${humanFeedback}` : "",
+      `\nAnalytical Report:\n${analysis}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
 
     const response = await model.invoke([
       {
@@ -24,7 +32,7 @@ export const summaryNode = async (state: typeof GraphState.State) => {
       },
       {
         role: "user",
-        content: state.analysis,
+        content: userMessageContent,
       },
     ]);
 
@@ -32,7 +40,7 @@ export const summaryNode = async (state: typeof GraphState.State) => {
       summary: response.text,
     };
   } catch (error) {
-    console.error("Summary failed: ", error);
+    console.error("Summary node failed: ", error);
     return { summary: "" };
   }
 };

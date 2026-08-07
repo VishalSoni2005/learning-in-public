@@ -11,13 +11,20 @@
 // - Calls LLM to analyze and extract insights.
 // - Returns { analysis } to update state.
 import model from "../llm";
-import { ANALYSIS_PROMPT } from "../prompts/analysis";
+import { ANALYSIS_PROMPT } from "../prompts";
 import { GraphState } from "../graph/node-state.state";
 
 export const analysisNode = async (state: typeof GraphState.State) => {
-  console.log(" [analysisNode] Analyzing...");
   try {
-    const { query, filteredResults } = state;
+    const { query, filteredResults, humanFeedback } = state;
+
+    const userMessageContent = [
+      `User Question:\n${query}`,
+      humanFeedback ? `\nHuman Feedback / Directives:\n${humanFeedback}` : "",
+      `\nFiltered Search Results:\n${filteredResults}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
 
     const response = await model.invoke([
       {
@@ -26,15 +33,7 @@ export const analysisNode = async (state: typeof GraphState.State) => {
       },
       {
         role: "user",
-        content: `
-Question:
-
-${query}
-
-Filtered Results:
-
-${filteredResults}
-`,
+        content: userMessageContent,
       },
     ]);
 
@@ -42,7 +41,7 @@ ${filteredResults}
       analysis: response.text,
     };
   } catch (error) {
-    console.error("filtering failed: ", error);
+    console.error("Analysis node failed: ", error);
     return { analysis: "" };
   }
 };

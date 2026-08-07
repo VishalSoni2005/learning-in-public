@@ -12,13 +12,20 @@
 // - Returns { filteredResults } to update state.
 
 import model from "../llm";
-import { FILTER_PROMPT } from "../prompts/filter";
+import { FILTER_PROMPT } from "../prompts";
 import { GraphState } from "../graph/node-state.state";
 
 export const filterNode = async (state: typeof GraphState.State) => {
-  console.log(" [filterNode] Filtering...");
   try {
-    const { query, searchResults } = state;
+    const { query, searchResults, humanFeedback } = state;
+
+    const userMessageContent = [
+      `User Question:\n${query}`,
+      humanFeedback ? `\nHuman Feedback / Directives:\n${humanFeedback}` : "",
+      `\nRaw Search Results:\n${JSON.stringify(searchResults, null, 2)}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
 
     const response = await model.invoke([
       {
@@ -27,14 +34,15 @@ export const filterNode = async (state: typeof GraphState.State) => {
       },
       {
         role: "user",
-        content: `question: ${query}\n\nsearch_results: ${searchResults}`,
+        content: userMessageContent,
       },
     ]);
+
     return {
       filteredResults: response.text,
     };
   } catch (error) {
-    console.error("filtering failed: ", error);
+    console.error("Filtering node failed: ", error);
     return { filteredResults: "" };
   }
 };
