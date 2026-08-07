@@ -60,11 +60,11 @@ paper
 *.o
 a.out
 a
-# Ignore all files with no extension anywhere
-*.
-*
-!*/
-!*.*
+# # Ignore all files with no extension anywhere
+# *.
+# *
+# !*/
+# !*.*
 
 .class/*
 .class/
