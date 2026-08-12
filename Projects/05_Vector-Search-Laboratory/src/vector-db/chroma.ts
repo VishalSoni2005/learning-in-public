@@ -2,7 +2,9 @@ import { ChromaClient } from "chromadb";
 import { config } from "../configs/config.js";
 
 const client = new ChromaClient({
-  path: `http://${config.chroma.host}:${config.chroma.port}`,
+  host: config.chroma.host,
+  port: config.chroma.port,
+  ssl: false,
 });
 
 export async function getCollection() {
@@ -13,9 +15,8 @@ export async function getCollection() {
     name: collectionName,
     metadata: { "hnsw:space": "cosine" },
     embeddingFunction: {
-      generate: async (texts: string[]) => {
-        throw new Error("Default embedding function called unexpectedly. Use local EmbeddingService instead.");
-      },
+      name: "local-transformers",
+      generate: async (texts: string[]) => [],
     },
   });
 }

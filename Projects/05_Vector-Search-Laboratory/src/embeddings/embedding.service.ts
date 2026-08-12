@@ -1,5 +1,6 @@
 import {
   pipeline,
+  Tensor,
   type FeatureExtractionPipeline,
 } from "@huggingface/transformers";
 import { config } from "../configs/config.js";
@@ -10,6 +11,7 @@ export class EmbeddingService {
   private async getExtractor(): Promise<FeatureExtractionPipeline> {
     if (!this.extractor) {
       console.log(`Loading embedding model (${config.embedding.model})...`);
+
       this.extractor = await pipeline(
         "feature-extraction",
         config.embedding.model
@@ -28,18 +30,21 @@ export class EmbeddingService {
     }
 
     const extractor = await this.getExtractor();
-    const output = await extractor(text, {
+
+    const output: Tensor = await extractor(text, {
       pooling: "mean",
       normalize: true,
     });
 
-    const vector = Array.from(output.data as Float32Array);
+    const vector: number[] = Array.from(output.data as Float32Array);
 
     if (vector.length !== config.embedding.dimensions) {
       throw new Error(
         `Embedding dimension mismatch: expected ${config.embedding.dimensions}, got ${vector.length}`
       );
     }
+
+    console.log(`✓ Vector generated for text: "${text}" (${vector.length} dimensions)`);
 
     return vector;
   }
@@ -74,3 +79,4 @@ export class EmbeddingService {
 }
 
 export const embeddingService = new EmbeddingService();
+

@@ -1,12 +1,16 @@
 import { indexDocuments } from "../search/index.service.js";
-import { search } from "../search/search.service.js";
 import { embeddingService } from "../embeddings/embedding.service.js";
 import { cosineSimilarity } from "../utils/cosine.js";
 import { config } from "../configs/config.js";
+import { search } from "../search/search.service.js";
 
-const [, , command, ...args] = process.argv;
+const [, , command, ...args] = process.argv; // * this is handle as pnpm run dev <string>
 
 async function main() {
+  // todo: comment it and fetch it from pmpm cli
+  // const command: any = "embed";
+  // const args = ["hello hello hello"];
+
   switch (command) {
     case "index": {
       const directory = args[0];
@@ -18,10 +22,11 @@ async function main() {
       }
 
       await indexDocuments(directory);
-      break;
+      return;
+      // break;
     }
 
-    case "search": {
+    case "search": {""
       let topK: number = config.search.defaultTopK;
       const queryParts: string[] = [];
 
@@ -72,7 +77,8 @@ async function main() {
         console.log(`\nText:\n${result.document}`);
       });
 
-      break;
+      // break;
+      return;
     }
 
     case "embed": {
@@ -89,8 +95,14 @@ async function main() {
 
       console.log(`✓ Embedding generated successfully`);
       console.log(`Dimensions: ${vector.length}`);
-      console.log(`Sample values (first 5): [${vector.slice(0, 5).map(v => v.toFixed(6)).join(", ")}...]`);
-      break;
+      console.log(
+        `Sample values (first 5): [${vector
+          .slice(0, 5)
+          .map((v) => v.toFixed(6))
+          .join(", ")}...]`,
+      );
+      return;
+      // break;
     }
 
     case "similarity": {
@@ -117,7 +129,8 @@ async function main() {
       console.log(`────────────────────────────`);
       console.log(`Cosine Similarity: ${sim.toFixed(6)}`);
       console.log(`Cosine Distance:   ${distance.toFixed(6)}`);
-      break;
+      // break;
+      return;
     }
 
     default:
@@ -144,6 +157,9 @@ Examples:
 }
 
 main().catch((error) => {
-  console.error("\nAn error occurred:", error instanceof Error ? error.message : error);
+  console.error(
+    "\nAn error occurred:",
+    error instanceof Error ? error.message : error,
+  );
   process.exit(1);
 });

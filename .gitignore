@@ -7,6 +7,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+.pending-project-ideas/
+
 # Dependency directories
 node_modules/
 custom_env/
@@ -50,6 +52,7 @@ Thumbs.db
 *.pkl
 
 # Large data files (optional)
+chroma_data/
 data/
 datasets/
 __pycache__/

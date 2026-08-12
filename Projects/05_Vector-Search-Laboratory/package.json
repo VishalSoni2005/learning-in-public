@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -13,11 +13,13 @@
   "packageManager": "pnpm@10.29.3",
   "devDependencies": {
     "@types/node": "^26.2.0",
+    "@types/pdf-parse": "^1.1.5",
     "tsx": "^4.23.11",
     "typescript": "^7.0.2"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.2.0",
-    "chromadb": "^3.5.0"
+    "chromadb": "^3.5.0",
+    "pdf-parse": "^2.4.5"
   }
 }

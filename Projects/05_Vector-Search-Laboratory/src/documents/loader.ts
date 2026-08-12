@@ -1,5 +1,6 @@
 import { readdir, readFile, stat } from "node:fs/promises";
 import { join, extname } from "node:path";
+import { PDFParse } from "pdf-parse";
 
 export interface Document {
   id: string;
@@ -8,11 +9,26 @@ export interface Document {
 }
 
 /**
- * Loads text (.txt) documents from a given directory.
+ * Extracts raw text content from a PDF file using PDFParse.
+ */
+export async function extractPdfText(filePath: string): Promise<string> {
+  const dataBuffer = await readFile(filePath);
+  const parser = new PDFParse({ data: dataBuffer });
+  try {
+    const textResult = await parser.getText();
+    return textResult.text ?? "";
+  } finally {
+    await parser.destroy();
+  }
+}
+
+/**
+ * Loads text (.txt) and PDF (.pdf) documents from a given directory.
  */
 export async function loadDocuments(directory: string): Promise<Document[]> {
   try {
     const stats = await stat(directory);
+
     if (!stats.isDirectory()) {
       throw new Error(`Path '${directory}' is not a directory.`);
     }
@@ -30,17 +46,33 @@ export async function loadDocuments(directory: string): Promise<Document[]> {
     const filePath = join(directory, filename);
     const fileStat = await stat(filePath);
 
-    if (!fileStat.isFile() || extname(filename) !== ".txt") {
+    if (!fileStat.isFile()) {
       continue;
     }
 
-    const content = await readFile(filePath, "utf-8");
+    const ext = extname(filename).toLowerCase();
+    let content = "";
 
-    documents.push({
-      id: filename,
-      filename,
-      content,
-    });
+    if (ext === ".txt") {
+      content = await readFile(filePath, "utf-8");
+    } else if (ext === ".pdf") {
+      console.log(`\nExtracting text from PDF: ${filename}...`);
+      content = await extractPdfText(filePath);
+    } else {
+      continue;
+    }
+
+    const trimmedContent = content.trim();
+
+    if (trimmedContent.length > 0) {
+      documents.push({
+        id: filename,
+        filename,
+        content: trimmedContent,
+      });
+    } else {
+      console.warn(`Warning: Could not extract text or file is empty: ${filename}`);
+    }
   }
 
   return documents;

@@ -7,7 +7,7 @@ export const config = {
   chroma: {
     host: "localhost",
     port: 8000,
-    collectionName: "knowledge_base",
+    collectionName: "testing_12AUG",
   },
 
   chunking: {

@@ -1,5 +1,7 @@
 # 🔬 Vector Search Laboratory
 
+command to open croma db locally: chroma run --host localhost --port 8000 --path ./chroma_data
+
 A small **terminal-based semantic search engine** built with **JavaScript**.
 
 The goal of this project is to understand how **embeddings, vector similarity, semantic search, chunking, and vector databases** actually work — without hiding the concepts behind an LLM framework.
