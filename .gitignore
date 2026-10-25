@@ -12,7 +12,10 @@ node_modules/
 custom_env/
 
 # Python virtual environments
-venv/
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
 .env/
 .envrc
 *.env
@@ -61,10 +64,10 @@ paper
 a.out
 a
 # Ignore all files with no extension anywhere
-*.
-*
-!*/
-!*.*
+# *.
+# *
+# !*/
+# !*.*
 
 .class/*
 .class/
