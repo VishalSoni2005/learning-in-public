@@ -12,10 +12,14 @@ node_modules/
 custom_env/
 
 # Python virtual environments
-venv/
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
 .env/
 .envrc
 *.env
+.venv/
 
 # Jupyter Notebook
 .ipynb_checkpoints/
@@ -60,10 +64,10 @@ paper
 a.out
 a
 # Ignore all files with no extension anywhere
-*.
-*
-!*/
-!*.*
+# *.
+# *
+# !*/
+# !*.*
 
 .class/*
 .class/
@@ -87,6 +91,6 @@ a
 Notes/
 C++/
 2019 Pattern
-.vscode 
+.vscode
 React
 .DS_Store

@@ -1,0 +1,5 @@
+Study  of  Deep  learning  Packages:
+1. Tensorflow,
+2. Keras,
+3. Theano  and
+4. PyTorch

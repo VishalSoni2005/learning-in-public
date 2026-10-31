@@ -1,0 +1,1 @@
+Build a Recurrent Neural Network by using the numpy library.
